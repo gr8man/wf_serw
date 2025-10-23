@@ -9,16 +9,14 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
----
 
-# Instalacja rozszerzenia Redis dla PHP
-# 1. Wymagany pakiet dla pecl
-# 2. Instalacja rozszerzenia Redis przez pecl
-# 3. Aktywacja rozszerzenia w PHP
-# 4. Czyszczenie
+# Instalacja serwera Redis i rozszerzenia PHP
+# 1. Instalacja pakietu serwera Redis oraz zależności dla rozszerzenia PHP.
+# 2. Instalacja rozszerzenia Redis dla PHP.
+# 3. Aktywacja rozszerzenia w PHP.
+# 4. Czyszczenie.
 RUN apt-get update && \
-    apt-get install -y libssl-dev && \
-    pecl install redis && \
+    apt-get install -y redis-server libssl-dev && \
     docker-php-ext-enable redis && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
